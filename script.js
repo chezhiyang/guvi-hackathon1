@@ -13,7 +13,10 @@ function searchData(event){
     event.preventDefault();
     var searchValue = document.getElementById('searchinput').value;
     fetch(`${baseURL}?brand=${searchValue}`).then((data)=>data.json()).then((data) => {
-        document.getElementById("items").innerHTML = dataHandler(data, searchValue);
+        if(data=="")
+            document.getElementById("items").innerHTML = "Sorry..we couldn't find this brand"
+        else
+            document.getElementById("items").innerHTML = dataHandler(data, searchValue);
     }).catch((er) => errorHandler(er));
 };
 
